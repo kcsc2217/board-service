@@ -15,11 +15,14 @@ public class Board {
     private Date date;
     private int count;
 
-    public Board(String sub, String content, Date date, int count) {
+    public Board(String sub, String content, Date date) {
         this.sub = sub;
         this.content = content;
         this.date = date;
-        this.count = count;
+    }
+
+    public void view(){
+        count++;
     }
 
 

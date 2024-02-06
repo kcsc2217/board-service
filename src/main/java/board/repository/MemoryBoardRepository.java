@@ -1,0 +1,49 @@
+package board.repository;
+
+import board.domain.Board;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.*;
+
+@Slf4j
+public class MemoryBoardRepository implements BoardRepository{
+
+    private static final Map<Long, Board> store = new HashMap<>();
+    private static long sequence = 0L;
+
+    @Override
+    public Board save(Board board) {
+        board.setId(sequence++);
+        store.put(board.getId(), board);
+        return board;
+    }
+
+    @Override
+    public Board findById(Long id) {
+        return store.get(id);
+    }
+
+    @Override
+    public List<Board> findByAll() {
+        return new ArrayList<>(store.values());
+    }
+
+    @Override
+    public void upDate(Long id, Board board) {
+        Board findBoard = findById(id);
+        findBoard.setDate(new Date());
+        findBoard.setSub(board.getSub());
+        findBoard.setContent(board.getContent());
+    }
+
+    @Override
+    public void deleteBoard(Long id) {
+        if(store.containsKey(id)){
+            store.remove(id);
+            log.info("삭제 완료");
+        }
+        else{
+            log.info("해당 아이디는 없습니다");
+        }
+    }
+}
