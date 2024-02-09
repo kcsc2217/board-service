@@ -1,11 +1,13 @@
-package board.repository;
+package board.boardservice.repository;
 
-import board.domain.Board;
+import board.boardservice.domain.Board;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
 @Slf4j
+@Repository
 public class MemoryBoardRepository implements BoardRepository{
 
     private static final Map<Long, Board> store = new HashMap<>();

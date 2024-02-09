@@ -1,4 +1,4 @@
-package board.domain;
+package board.boardservice.domain;
 
 import lombok.Getter;
 import lombok.Setter;

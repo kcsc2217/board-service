@@ -1,8 +1,8 @@
 package board.domain.board;
 
-import board.domain.Board;
-import board.repository.BoardRepository;
-import board.repository.MemoryBoardRepository;
+import board.boardservice.domain.Board;
+import board.boardservice.repository.BoardRepository;
+import board.boardservice.repository.MemoryBoardRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
