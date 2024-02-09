@@ -15,6 +15,8 @@ public interface BoardRepository {
 
     void deleteBoard(Long id);
 
+    void clearStore();
+
 
 
 

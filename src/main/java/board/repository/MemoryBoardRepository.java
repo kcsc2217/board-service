@@ -15,6 +15,7 @@ public class MemoryBoardRepository implements BoardRepository{
     public Board save(Board board) {
         board.setId(sequence++);
         store.put(board.getId(), board);
+        board.view();
         return board;
     }
 
@@ -45,5 +46,10 @@ public class MemoryBoardRepository implements BoardRepository{
         else{
             log.info("해당 아이디는 없습니다");
         }
+    }
+
+    @Override
+    public void clearStore(){
+        store.clear();
     }
 }
