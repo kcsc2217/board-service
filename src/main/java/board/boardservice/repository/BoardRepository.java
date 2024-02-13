@@ -9,6 +9,8 @@ public interface BoardRepository {
 
     Board save(Board board);
     Board findById(Long id);
+
+    Board findBysub(String sub);
     List<Board> findByAll();
 
     void upDate(Long id, Board board);

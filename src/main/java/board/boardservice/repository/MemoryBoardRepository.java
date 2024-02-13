@@ -27,6 +27,11 @@ public class MemoryBoardRepository implements BoardRepository{
     }
 
     @Override
+    public Board findBysub(String sub){
+
+    }
+
+    @Override
     public List<Board> findByAll() {
         return new ArrayList<>(store.values());
     }

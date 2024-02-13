@@ -47,7 +47,7 @@ public class BoardController {
         board.setDate(new Date());
 
 
-        return "basic/board";
+        return "redirect:/basic/boards/" + board.getId();
 
     }
 
