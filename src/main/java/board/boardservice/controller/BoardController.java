@@ -67,6 +67,15 @@ public class BoardController {
         return "redirect:/basic/boards/{boardId}";
     }
 
+    @GetMapping("/delete/{boardId}")
+    public String delete(@PathVariable Long boardId){
+        boardRepository.deleteBoard(boardId);
+
+        return "redirect:/basic/boards";
+    }
+
+
+
 
     @PostConstruct
     public void init() {
