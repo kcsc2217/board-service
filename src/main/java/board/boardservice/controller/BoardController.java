@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Date;
@@ -28,6 +30,22 @@ public class BoardController {
         return "basic/boards";
 
     }
+
+    @GetMapping("/{boardId}")
+    public String board(@PathVariable Long boardId, Model model){
+        Board board = boardRepository.findById(boardId);
+        model.addAttribute("board", board);
+
+        return "basic/board";
+    }
+
+    @GetMapping("/create")
+    public String createBoard(){
+        return "basic/addForm";
+    }
+
+    @PostMapping("/create")
+
 
 
 
