@@ -19,7 +19,7 @@ public class BoardController {
     private final BoardRepository boardRepository;
 
     @GetMapping
-    public String boards(Model model){
+    public String boards(Model model) {
         List<Board> boardList = boardRepository.findByAll();
 
         model.addAttribute("board", boardList);
@@ -29,7 +29,7 @@ public class BoardController {
     }
 
     @GetMapping("/{boardId}")
-    public String board(@PathVariable Long boardId, Model model){
+    public String board(@PathVariable Long boardId, Model model) {
         Board board = boardRepository.findById(boardId);
         model.addAttribute("board", board);
 
@@ -37,27 +37,40 @@ public class BoardController {
     }
 
     @GetMapping("/create")
-    public String createBoardForm(){
+    public String createBoardForm() {
         return "basic/addForm";
     }
 
     @PostMapping("/create")
-    public String createBoard(@ModelAttribute Board board){
-    boardRepository.save(board);
-    board.setDate(new Date());
+    public String createBoard(@ModelAttribute Board board) {
+        boardRepository.save(board);
+        board.setDate(new Date());
 
 
-    return "basic/board";
+        return "basic/board";
 
     }
 
+    @GetMapping("/edit/{boardId}")
+    public String editForm(@PathVariable Long boardId, Model model){
+        Board findBoard = boardRepository.findById(boardId);
 
+        model.addAttribute("board", findBoard);
 
+        return "basic/edit";
+    }
+
+    @PostMapping("/edit/{boardId}")
+    public String edit(@PathVariable Long boardId, @ModelAttribute Board board){
+        boardRepository.upDate(boardId, board);
+
+        return "redirect:/basic/boards/{boardId}";
+    }
 
 
     @PostConstruct
     public void init() {
-    boardRepository.save(new Board("ㅋㅋ", "ㅋㅋ", new Date()));
+        boardRepository.save(new Board("ㅋㅋ", "ㅋㅋ", new Date()));
         boardRepository.save(new Board("ㅋㅋ", "ㅇㅇ", new Date()));
 
     }
