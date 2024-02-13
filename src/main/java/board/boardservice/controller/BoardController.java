@@ -6,10 +6,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -40,11 +37,20 @@ public class BoardController {
     }
 
     @GetMapping("/create")
-    public String createBoard(){
+    public String createBoardForm(){
         return "basic/addForm";
     }
 
     @PostMapping("/create")
+    public String createBoard(@ModelAttribute Board board){
+    boardRepository.save(board);
+    board.setDate(new Date());
+
+
+    return "basic/board";
+
+    }
+
 
 
 
